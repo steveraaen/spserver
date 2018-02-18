@@ -5,16 +5,16 @@ const moment = require('moment')
 
 module.exports = function(app) {
 var today = moment().format("dddd").toUpperCase()
-
+var m = "MON"
 var d = today.substring(0, 3)
-var rte = new RegExp(".*^" + d + ".*")
+var rte = new RegExp(".*^" + "MON" + ".*")
 console.log(rte)
     app.get("/mon/:coordinates?", function(req, res) {
         var lat = parseFloat(req.query.lat).toFixed(6)
         var lng = parseFloat(req.query.lng).toFixed(6)
         console.log(req.query)
         signs.find({
-            "properties.T": rte,
+            
             geometry: {
                 $near: {
                     $geometry: {
@@ -31,6 +31,6 @@ console.log(rte)
              
                 res.json(doc);
             }
-        }).limit(1000);
+        }).limit(10000);
     });
 }
