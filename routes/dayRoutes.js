@@ -21,7 +21,7 @@ console.log(rte)
                         type: "Point",
                         coordinates: [lng, lat ]
                     },
-                    $maxDistance: 1000 * 1.60934
+                    $maxDistance: 500 * 1.60934
                 }
             }
         }, function(error, doc) {
