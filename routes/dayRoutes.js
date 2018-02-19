@@ -4,17 +4,18 @@ var places = require("../models/Place.js");*/
 const moment = require('moment')
 
 module.exports = function(app) {
-var today = moment().format("dddd").toUpperCase()
-var m = "MON"
-var d = today.substring(0, 3)
-var rte = new RegExp(".*^" + "MON" + ".*")
-console.log(rte)
+
+
+
     app.get("/mon/:coordinates?", function(req, res) {
+        var today = moment().format("dddd").toUpperCase()
+        var d = today.substring(0, 3)
         var lat = parseFloat(req.query.lat).toFixed(6)
         var lng = parseFloat(req.query.lng).toFixed(6)
-        console.log(req.query)
+        console.log(d)
+        var rte = new RegExp(".*^" + d + ".*")
         signs.find({
-            
+            "properties.T": rte,
             geometry: {
                 $near: {
                     $geometry: {
