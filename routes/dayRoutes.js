@@ -5,14 +5,19 @@ const moment = require('moment')
 
 module.exports = function(app) {
 
-
-
     app.get("/mon/:coordinates?", function(req, res) {
-        var today = moment().format("dddd").toUpperCase()
+        console.log(req.query)
+        if(req.query.day) {
+          var today = req.query.day  
+        } else {
+    var today = moment().format("dddd").toUpperCase()            
+        }
+
+        
         var d = today.substring(0, 3)
-        var lat = parseFloat(req.query.lat).toFixed(6)
-        var lng = parseFloat(req.query.lng).toFixed(6)
-        console.log(d)
+        var lat = parseFloat(req.query.coordinates[1]).toFixed(6)
+        var lng = parseFloat(req.query.coordinates[0]).toFixed(6)
+       
         var rte = new RegExp(".*^" + d + ".*")
         signs.find({
             "properties.T": rte,
@@ -22,7 +27,7 @@ module.exports = function(app) {
                         type: "Point",
                         coordinates: [lng, lat ]
                     },
-                    $maxDistance: 1500 * 1.60934
+                    $maxDistance: 2000 * 1.60934
                 }
             }
         }, function(error, doc) {
@@ -32,6 +37,7 @@ module.exports = function(app) {
              
                 res.json(doc);
             }
-        }).limit(2000);
+        }).limit(3500);
     });
+
 }

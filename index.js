@@ -15,8 +15,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // ------ Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 /*require("./routes/place-routes.js")(app);
-require("./routes/load-routes.js")(app);
-require("./routes/time-routes.js")(app);*/
+require("./routes/load-routes.js")(app);*/
+require("./routes/bikeRoute.js")(app);
 require("./routes/dayRoutes.js")(app);
 mongoose.connect('mongodb://heroku_d7twbhf6:9jg0930vc9jekacdne62v6d5sk@ds239128.mlab.com:39128/heroku_d7twbhf6', {
   
