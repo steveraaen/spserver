@@ -20,14 +20,14 @@ module.exports = function(app) {
        
         var rte = new RegExp(".*^" + d + ".*")
         signs.find({
-            "properties.T": rte,
+           /* "properties.T": rte,*/
             geometry: {
                 $near: {
                     $geometry: {
                         type: "Point",
                         coordinates: [lng, lat ]
                     },
-                    $maxDistance: 2000 * 1.60934
+                    $maxDistance: 800 * 1.60934
                 }
             }
         }, function(error, doc) {
