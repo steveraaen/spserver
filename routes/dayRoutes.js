@@ -27,7 +27,7 @@ module.exports = function(app) {
                         type: "Point",
                         coordinates: [lng, lat ]
                     },
-                    $maxDistance: 800 * 1.60934
+                    $maxDistance: 500 * 1.60934
                 }
             }
         }, function(error, doc) {
@@ -37,7 +37,7 @@ module.exports = function(app) {
              
                 res.json(doc);
             }
-        }).limit(3500);
+        }).limit(1000);
     });
 
 }
