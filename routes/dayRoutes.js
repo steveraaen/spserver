@@ -38,14 +38,14 @@ module.exports = function(app) {
 });
     app.get("/api/meters", function(req, res) {
         console.log(req.query)
-/*        var lat = parseFloat(req.query.coordinates[1]).toFixed(6)
-        var lng = parseFloat(req.query.coordinates[0]).toFixed(6)*/
+        var lat = parseFloat(req.query.coordinates[1]).toFixed(6)
+        var lng = parseFloat(req.query.coordinates[0]).toFixed(6)
         meters.find({
             geometry: {
                 $near: {
                     $geometry: {
                         type: "Point",
-                        coordinates: [-73.97897, 40.68526]
+                        coordinates: [lng, lat]
                     },
                     $maxDistance: 500 * 1.60934
                 }
