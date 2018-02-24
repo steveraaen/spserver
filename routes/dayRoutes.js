@@ -1,6 +1,6 @@
 var signs = require("../models/Allsigns.js");
-/*var testsigns = require("../models/Testsigns.js");
-var places = require("../models/Place.js");*/
+var meters = require("../models/Meters.js");
+/*var places = require("../models/Place.js");*/
 const moment = require('moment')
 
 module.exports = function(app) {
@@ -12,9 +12,7 @@ module.exports = function(app) {
         } else {
     var today = moment().format("dddd").toUpperCase()            
         }
-
-        
-        var d = today.substring(0, 3)
+       var d = today.substring(0, 3)
         var lat = parseFloat(req.query.coordinates[1]).toFixed(6)
         var lng = parseFloat(req.query.coordinates[0]).toFixed(6)
        
@@ -33,11 +31,53 @@ module.exports = function(app) {
         }, function(error, doc) {
             if (error) {
                 console.log(error);
-            } else {
-             
+            } else {             
                 res.json(doc);
             }
-        }).limit(1000);
-    });
+        }).limit(1500);
+});
+    app.get("/api/meters", function(req, res) {
+        console.log(req.query)
+/*        var lat = parseFloat(req.query.coordinates[1]).toFixed(6)
+        var lng = parseFloat(req.query.coordinates[0]).toFixed(6)*/
+        meters.find({
+            geometry: {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: [-73.97897, 40.68526]
+                    },
+                    $maxDistance: 500 * 1.60934
+                }
+            }
+        }, function(error, doc) {
+            if (error) {
+                console.log(error);
+            } else {            
+                res.json(doc);
+            }
+        }).limit(1500);        
+    })
+
+
+
+    
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
