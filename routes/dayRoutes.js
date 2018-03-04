@@ -36,7 +36,7 @@ module.exports = function(app) {
             }
         }).limit(1500);
 });
-    app.get("/api/meters", function(req, res) {
+    app.get("/api/meters?", function(req, res) {
         console.log(req.query)
         var lat = parseFloat(req.query.coordinates[1]).toFixed(6)
         var lng = parseFloat(req.query.coordinates[0]).toFixed(6)
@@ -90,15 +90,29 @@ module.exports = function(app) {
             }
         }).limit(10);
 });
+   
 
 
-    
-
+ const endpoint = app.get("/test", function(req, res) {
+        signs.find({
+           /* "properties.T": rte,*/
+            geometry: {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: [-73.9839440, 40.6766600 ]
+                    },
+                    $maxDistance: 1000
+                }
+            }
+        })
+    })
+    const middleWare = async (req, res, next) => {
+    const data = await middleWareZ(endpoint)
+    req.data = data.json()
+    next()
+    }
 }
-
-
-
-
 
 
 
