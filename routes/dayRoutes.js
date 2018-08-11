@@ -25,7 +25,7 @@ module.exports = function(app) {
                         type: "Point",
                         coordinates: [lng, lat ]
                     },
-                    $maxDistance: 5000 * 1.60934
+                    $maxDistance: 2000 * 1.60934
                 }
             }
         }, function(error, doc) {
@@ -34,7 +34,7 @@ module.exports = function(app) {
             } else {             
                 res.json(doc);
             }
-        }).limit(3000);
+        }).limit(2000);
 });
     app.get("/api/meters?", function(req, res) {
         console.log(req.query)
@@ -47,7 +47,7 @@ module.exports = function(app) {
                         type: "Point",
                         coordinates: [lng, lat]
                     },
-                    $maxDistance: 5000 * 1.60934
+                    $maxDistance: 2000 * 1.60934
                 }
             }
         }, function(error, doc) {
