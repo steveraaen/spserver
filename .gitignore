@@ -25,7 +25,7 @@ signs.js
 ndsigns.js
 meters.geojson
 meters.json
-keepLocal.js
+
 # Android/IntelliJ
 #
 build/
