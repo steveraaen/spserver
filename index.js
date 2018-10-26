@@ -18,11 +18,16 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 require("./routes/load-routes.js")(app);*/
 require("./routes/bikeRoute.js")(app);
 require("./routes/dayRoutes.js")(app);
-mongoose.connect('mongodb://heroku_d7twbhf6:9jg0930vc9jekacdne62v6d5sk@ds239128.mlab.com:39128/heroku_d7twbhf6', {
-  
+/*mongoose.connect('mongodb://heroku_d7twbhf6:9jg0930vc9jekacdne62v6d5sk@ds239128.mlab.com:39128/heroku_d7twbhf6', {*/
+mongoose.connect('mongodb://steve:modernWater360@ds131003-a0.mlab.com:31003,ds131003-a1.mlab.com:31003/prodparking?replicaSet=rs-ds131003', {
+ 
 }).then(function() {
 	console.log('Mongo connected via mongoose')
 })
+
+
+
+
 
 const port = process.env.PORT || 5001;
 app.listen(port);

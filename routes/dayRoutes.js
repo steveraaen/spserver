@@ -3,7 +3,31 @@ var meters = require("../models/Meters.js");
 /*var places = require("../models/Place.js");*/
 const moment = require('moment')
 
+const signfile = require('../signs.js')
+console.log(signfile)
 module.exports = function(app) {
+
+/*app.get("/uploadsigns", function(req, res) {
+    signs.collection.insert(signfile, function (err, docs) { 
+      if (err){  
+          return console.error(err); 
+      } else { 
+        console.log("Multiple documents inserted to Collection"); 
+      } 
+    }); 
+})*/
+app.get("/alls", function(req, res) {
+    signs.collection.insert(signfile, function (err, docs) { 
+      if (err){  
+          return console.error(err); 
+      } else { 
+        console.log("Multiple documents inserted to Collection"); 
+      } 
+    }); 
+})
+
+
+
 
     app.get("/mon/:coordinates?", function(req, res) {
         console.log(req.query)
@@ -25,7 +49,7 @@ module.exports = function(app) {
                         type: "Point",
                         coordinates: [lng, lat ]
                     },
-                    $maxDistance: 2000 * 1.60934
+                    $maxDistance: 5000 * 1.60934
                 }
             }
         }, function(error, doc) {
@@ -90,9 +114,6 @@ module.exports = function(app) {
             }
         }).limit(10);
 });
-   
-
-
  const endpoint = app.get("/test", function(req, res) {
         signs.find({
            /* "properties.T": rte,*/

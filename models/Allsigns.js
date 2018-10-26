@@ -7,7 +7,7 @@ var signSchema = new Schema({
 		B: {type: String, required: true},
 		ID: {type: Number, required: true},
 		MUT: {type: String, required: true},
-		T: {type: String, required: true}
+		T: {type: String}
 
 	},
 	geometry: { 
