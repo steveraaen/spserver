@@ -1,5 +1,6 @@
 // mongoimport -h ds131003-a0.mlab.com:31003 -d prodparking -c signs -u steve -p modernWater360 --file signs.js
-
+// mongoexport -h ds239128.mlab.com:39128 -d heroku_d7twbhf6 -c meters -u steve -p modernWater360 -o meters.json
+// mongoimport -h ds131003-a0.mlab.com:31003 -d prodparking -c meters -u steve -p modernWater360 --file meters.json
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -20,9 +21,9 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 require("./routes/load-routes.js")(app);*/
 require("./routes/bikeRoute.js")(app);
 require("./routes/dayRoutes.js")(app);
-mongoose.connect('mongodb://heroku_d7twbhf6:9jg0930vc9jekacdne62v6d5sk@ds239128.mlab.com:39128/heroku_d7twbhf6', {
-/*mongoose.connect('mongodb://steve:modernWater360@ds131003-a0.mlab.com:31003,ds131003-a1.mlab.com:31003/prodparking?replicaSet=rs-ds131003', {
- */
+/*mongoose.connect('mongodb://heroku_d7twbhf6:9jg0930vc9jekacdne62v6d5sk@ds239128.mlab.com:39128/heroku_d7twbhf6', {
+*/mongoose.connect('mongodb://steve:modernWater360@ds131003-a0.mlab.com:31003,ds131003-a1.mlab.com:31003/prodparking?replicaSet=rs-ds131003', {
+ 
 }).then(function() {
 	console.log('Mongo connected via mongoose')
 })

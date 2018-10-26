@@ -23,6 +23,8 @@ DerivedData
 project.xcworkspace
 signs.js
 ndsigns.js
+meters.geojson
+meters.json
 # Android/IntelliJ
 #
 build/
